@@ -17,9 +17,7 @@
     var TOKEN = 'wss://stream.redmarker.io:443' + '?sessionId=' + SESSION_ID + '&secret=' + SECRET + '&recorder=true';
     var OV = new OpenVidu();
     var session = OV.initSession();
-    alert('hello');
     session.on("streamCreated", (event) => {
-        alert(JSON.stringify(event))
         if (event.stream?.typeOfVideo !== "SCREEN"){
             session.subscribe(event.stream, 'videos');
         };
