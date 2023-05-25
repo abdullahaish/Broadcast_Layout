@@ -11,7 +11,7 @@
     // WARNING! Use "ws://" as protocol instead of "wss://" if you are using
     // the OpenVidu dev container (openvidu/openvidu-dev) through localhost
     var TOKEN = url.searchParams.get("token");
-
+    alert(TOKEN);
     var OV = new OpenVidu();
     var session = OV.initSession();
 
