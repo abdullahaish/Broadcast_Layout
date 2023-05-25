@@ -22,11 +22,11 @@
 
     session.on("streamCreated", (event) => {
         session.subscribe(event.stream, 'videos');
-        alert(event);
+        alert(event, "Created");
     });
     session.connect(TOKEN)
         .then(() => { alert('Recorder participant connected') })
-        .catch(error => { alert(error) });
+        .catch(error => { alert(error, "ERROR") });
 </script>
 
 </html>
