@@ -7,11 +7,14 @@
 </body>
 
 <script>
-    var url = new URL(window.location.href);
+//     var url = new URL(window.location.href);
+    var url = url.searchParams.get("openViduURL");
+    var SESSION_ID = url.searchParams.get("sessionId");
+    var SECRET = url.searchParams.get("secret");
     // WARNING! Use "ws://" as protocol instead of "wss://" if you are using
     // the OpenVidu dev container (openvidu/openvidu-dev) through localhost
-    var TOKEN = url.searchParams.get("token");
-    alert(TOKEN);
+//     var TOKEN = url.searchParams.get("token");
+    var TOKEN = 'wss://' + url + '?sessionId=' + SESSION_ID + '&secret=' + SECRET + '&recorder=true';
     var OV = new OpenVidu();
     var session = OV.initSession();
 
