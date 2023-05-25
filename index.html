@@ -22,7 +22,6 @@
 
     session.on("streamCreated", (event) => {
         session.subscribe(event.stream, 'videos');
-        alert("Created");
     });
     session.connect(TOKEN)
         .then(() => { alert('Recorder participant connected') })
