@@ -19,8 +19,7 @@
     var session = OV.initSession();
 
     session.on("streamCreated", (event) => {
-        const eventData = JSON.parse(event.connection?.data.split('%')[0])
-        if (eventData === "web-camera"){
+        if (event.stream?.typeOfVideo !== "SCREEN"){
             session.subscribe(event.stream, 'videos');
         };
     });
