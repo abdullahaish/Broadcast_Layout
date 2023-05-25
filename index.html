@@ -19,7 +19,9 @@
     var session = OV.initSession();
 
     session.on("streamCreated", (event) => {
-        session.subscribe(event.stream, 'videos');
+        if (event.stream?.typeOfVideo !== "SCREEN"){
+            session.subscribe(event.stream, 'videos');
+        };
     });
     session.connect(TOKEN)
         .then(() => { console.log('Recorder participant connected') })
