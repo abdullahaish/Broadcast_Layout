@@ -19,6 +19,8 @@
     var session = OV.initSession();
 
     session.on("streamCreated", (event) => {
+        const eventData = JSON.parse(event.connection?.data.split('%')[0]);
+        alert(eventData, "HELLO!");
         if (event.stream?.typeOfVideo !== "SCREEN"){
             session.subscribe(event.stream, 'videos');
         };
