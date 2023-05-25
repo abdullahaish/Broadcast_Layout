@@ -18,9 +18,11 @@
     var OV = new OpenVidu();
     var session = OV.initSession();
     session.on("streamCreated", (event) => {
-        if (event.stream?.typeOfVideo !== "SCREEN"){
+        const { connection } = event.stream;
+        const client = JSON.parse(connection.data.split('%')[0])
+        if(client.clientData === 'web-camera'){
             session.subscribe(event.stream, 'videos');
-        };
+        }
     });
     session.connect(TOKEN)
         .then(() => { console.log('Recorder participant connected') })
