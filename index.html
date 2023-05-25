@@ -1,21 +1,18 @@
 <html>
 
-<head>
-    <script src="openvidu-browser-2.27.0.min.js"></script>
-</head>
+<head><script src="openvidu-browser-2.27.0.min.js"></script></head>
 
 <body>
-    <div id="videos" style="height: 80vh; width: 80vh"></div>
+    <div id="videos"></div>
 </body>
 
 <script>
-//     var url = new URL(window.location.href);
-//     var SESSION_ID = url.searchParams.get("sessionId");
-//     var SECRET = url.searchParams.get("secret");
+    var url = new URL(window.location.href);
+    var SESSION_ID = url.searchParams.get("sessionId");
+    var SECRET = url.searchParams.get("secret");
     // WARNING! Use "ws://" as protocol instead of "wss://" if you are using
     // the OpenVidu dev container (openvidu/openvidu-dev) through localhost
-    var TOKEN = "wss://stream.redmarker.io?sessionId=session_ETMR_T3_4661&secret=etmrvidu&token=tok_HRFg5Ds9pt2rIt7n&edition=pro&webrtcStatsInterval=30&sendBrowserLogs=disabled";
-//     var TOKEN = 'wss://' + location.host + '?sessionId=' + SESSION_ID + '&secret=' + SECRET + '&recorder=true';
+    var TOKEN = 'wss://stream.redmarker.io' + '?sessionId=' + SESSION_ID + '&secret=' + SECRET + '&recorder=true';
 
     var OV = new OpenVidu();
     var session = OV.initSession();
