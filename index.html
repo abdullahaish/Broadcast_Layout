@@ -1,32 +1,34 @@
 <html>
 
-<head><script src="openvidu-browser-2.27.0.min.js"></script></head>
+<head>
+  <script src="openvidu-browser-2.27.0.min.js"></script>
+</head>
 
-<body>
-    <div id="videos" style='width:100%; height:100%;'></div>
+<body style="background-color: black;">
+  <div id="videos" style="width: 90vh; height: 90vh;"></div>
 </body>
 
 <script>
-//     var url = new URL(window.location.href);
-    var url = new URL(window.location.href);
-    var SESSION_ID = url.searchParams.get("sessionId");
-    var SECRET = url.searchParams.get("secret");
-    // WARNING! Use "ws://" as protocol instead of "wss://" if you are using
-    // the OpenVidu dev container (openvidu/openvidu-dev) through localhost
-//     var TOKEN = url.searchParams.get("token");
-    var TOKEN = 'wss://stream.redmarker.io:443' + '?sessionId=' + SESSION_ID + '&secret=' + SECRET + '&recorder=true';
-    var OV = new OpenVidu();
-    var session = OV.initSession();
-    session.on("streamCreated", (event) => {
-        const { connection } = event.stream;
-        const client = JSON.parse(connection.data.split('%')[0])
-        if(client.clientData === 'web-camera'){
-            session.subscribe(event.stream, 'videos');
-        }
-    });
-    session.connect(TOKEN)
-        .then(() => { console.log('Recorder participant connected') })
-        .catch(error => { console.error(error) });
+  //     var url = new URL(window.location.href);
+  var url = new URL(window.location.href);
+  var SESSION_ID = url.searchParams.get("sessionId");
+  var SECRET = url.searchParams.get("secret");
+  // WARNING! Use "ws://" as protocol instead of "wss://" if you are using
+  // the OpenVidu dev container (openvidu/openvidu-dev) through localhost
+  //     var TOKEN = url.searchParams.get("token");
+  var TOKEN = 'wss://' + location.host + '?sessionId=' + SESSION_ID + '&secret=' + SECRET + '&recorder=true';
+  var OV = new OpenVidu();
+  var session = OV.initSession();
+  session.on("streamCreated", (event) => {
+    const { connection } = event.stream;
+    const client = JSON.parse(connection.data.split('%')[0])
+    if (client.clientData === 'web-camera') {
+      session.subscribe(event.stream, 'videos');
+    }
+  });
+  session.connect(TOKEN)
+    .then(() => { console.log('Recorder participant connected') })
+    .catch(error => { console.error(error) });
 </script>
 
 </html>
